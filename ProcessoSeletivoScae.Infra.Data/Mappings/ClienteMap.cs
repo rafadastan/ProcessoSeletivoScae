@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProcessoSeletivoScae.Domain.Entites;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace ProcessoSeletivoScae.Infra.Data.Mappings
 {
     public class ClienteMap : IEntityTypeConfiguration<Cliente>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Cliente> builder)
+        public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             builder.ToTable("Aluno");
 

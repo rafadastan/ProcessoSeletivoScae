@@ -12,14 +12,14 @@ namespace ProcessoSeletivoScae.Domain.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public ClienteDomainService(IUnitOfWork unitOfWork) : base(unitOfWork.AlunoRepository)
+        public ClienteDomainService(IUnitOfWork unitOfWork) : base(unitOfWork.ClienteRepository)
         {
             _unitOfWork = unitOfWork;
         }
 
         public override void Create(Cliente entity)
         {
-            if (_unitOfWork.AlunoRepository
+            if (_unitOfWork.ClienteRepository
                     .Get(a => a.Email.Equals(entity.Email)) != null)
                 throw new EmailUnico(entity.Email);
 

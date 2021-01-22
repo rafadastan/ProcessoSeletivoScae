@@ -17,7 +17,7 @@ namespace ProcessoSeletivoScae.Infra.Data.Repositories
             _sqlContext = sqlContext;
         }
 
-        public IClienteRepository AlunoRepository => new ClienteRepository(_sqlContext);
+        public IClienteRepository ClienteRepository => new ClienteRepository(_sqlContext);
 
         public void BeginTransaction()
         {

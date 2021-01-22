@@ -13,12 +13,12 @@ namespace ProcessoSeletivoScae.Application.Services
 {
     public class ClienteApplicationService : IClienteApplicationService
     {
-        private readonly IClienteDomainService _alunoDomainService;
+        private readonly IClienteDomainService _clienteDomainService;
         private readonly IMapper _mapper;
 
         public ClienteApplicationService(IClienteDomainService alunoDomainService, IMapper mapper)
         {
-            _alunoDomainService = alunoDomainService;
+            _clienteDomainService = alunoDomainService;
             _mapper = mapper;
         }
 
@@ -33,7 +33,7 @@ namespace ProcessoSeletivoScae.Application.Services
                 Sexo = (SexoEnum)char.Parse(model.Sexo)
             };
 
-            _alunoDomainService.Create(aluno);
+            _clienteDomainService.Create(aluno);
 
             var alunoModel = _mapper.Map<ClienteDTO>(aluno);
 
@@ -42,7 +42,7 @@ namespace ProcessoSeletivoScae.Application.Services
 
         public ClienteDTO Update(ClienteEdicaoModel model)
         {
-            var aluno = _alunoDomainService.GetById(model.IdCliente);
+            var aluno = _clienteDomainService.GetById(model.IdCliente);
 
             if (aluno == null)
                 throw new Exception("Aluno não encontrado");
@@ -51,7 +51,7 @@ namespace ProcessoSeletivoScae.Application.Services
             aluno.DataNascimento = model.DataDeNascimento;
             aluno.Email = model.Email;
 
-            _alunoDomainService.Update(aluno);
+            _clienteDomainService.Update(aluno);
 
             var alunoModel = _mapper.Map<ClienteDTO>(aluno);
 
@@ -60,12 +60,12 @@ namespace ProcessoSeletivoScae.Application.Services
 
         public ClienteDTO Delete(Guid id)
         {
-            var aluno = _alunoDomainService.GetById(id);
+            var aluno = _clienteDomainService.GetById(id);
 
             if (aluno == null)
                 throw new Exception("Aluno não encontrado");
 
-            _alunoDomainService.Delete(aluno);
+            _clienteDomainService.Delete(aluno);
 
             var alunoModel = _mapper.Map<ClienteDTO>(aluno);
 
@@ -76,7 +76,7 @@ namespace ProcessoSeletivoScae.Application.Services
         {
             var result = new List<ClienteDTO>();
 
-            foreach (var item in _alunoDomainService.GetAll())
+            foreach (var item in _clienteDomainService.GetAll())
             {
                 result.Add(new ClienteDTO
                 {
@@ -93,7 +93,7 @@ namespace ProcessoSeletivoScae.Application.Services
 
         public ClienteDTO GetById(Guid id)
         {
-            var aluno = _alunoDomainService.GetById(id);
+            var aluno = _clienteDomainService.GetById(id);
 
             if (aluno == null)
                 return null;
@@ -105,7 +105,7 @@ namespace ProcessoSeletivoScae.Application.Services
 
         public void Dispose()
         {
-            _alunoDomainService.Dispose();
+            _clienteDomainService.Dispose();
         }
     }
 }

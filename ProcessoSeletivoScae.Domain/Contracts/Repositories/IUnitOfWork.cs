@@ -6,7 +6,7 @@ namespace ProcessoSeletivoScae.Domain.Contracts.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        IClienteRepository AlunoRepository { get; }
+        IClienteRepository ClienteRepository { get; }
 
         void BeginTransaction();
         void Commit();
